@@ -8,7 +8,7 @@ export default NextAuth({
       credentials: {
         email: {
           label: '이메일',
-          type: 'text',
+          type: 'email',
           placeholder: '이메일을 입력하세요.',
         },
         password: {
@@ -20,7 +20,7 @@ export default NextAuth({
 
       async authorize(credentials, req) {
         // 추후 db 유효성 검사 로직 추가
-        const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' };
+        const user = { id: 1, name: 'jsub', email: credentials?.email };
 
         if (user) {
           return user as any;
