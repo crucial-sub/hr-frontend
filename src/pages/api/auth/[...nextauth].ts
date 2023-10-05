@@ -27,6 +27,15 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.user = token as any;
+      return session;
+    },
+  },
   secret: process.env.NEXT_PUBLIC_SECRET,
   pages: {
     signIn: '/auth/login',
