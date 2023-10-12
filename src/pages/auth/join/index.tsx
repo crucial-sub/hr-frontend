@@ -1,14 +1,20 @@
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 const JoinPage = () => {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // 회원가입 로직 & 회원가입 성공하면 회사 선택 페이지로
-    router.push('/auth/set-company');
+    // 우선 테스트를 위해 회원가입이 무조건 통과하고 recoil로 관리할 수 있도록 설정
+    const result = await signIn('credentials', {
+      email: email,
+      password: password,
+      redirect: true,
+      callbackUrl: '/auth/set-company',
+    });
   };
 
   return (

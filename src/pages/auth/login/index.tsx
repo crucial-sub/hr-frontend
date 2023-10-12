@@ -14,6 +14,7 @@ const LoginPage = () => {
       email: email,
       password: password,
       redirect: true,
+      //추후 회사 설정이 안돼있으면 /auth/set-company로 가도록 설정
       callbackUrl: '/',
     });
   };
